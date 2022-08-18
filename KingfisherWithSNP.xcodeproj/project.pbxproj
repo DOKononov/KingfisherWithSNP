@@ -15,6 +15,7 @@
 		4028D43128AD3E1200B2279E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4028D43028AD3E1200B2279E /* SnapKit */; };
 		4028D43428AD3E4200B2279E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4028D43328AD3E4200B2279E /* Kingfisher */; };
 		4028D43628AD3E9800B2279E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028D43528AD3E9800B2279E /* MainVC.swift */; };
+		40A07FA628AE796100D81E3A /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A07FA528AE796100D81E3A /* ScreenSize.swift */; };
 		40E8DD1B28AD701A00FC43F4 /* MainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8DD1A28AD701A00FC43F4 /* MainVCViewModel.swift */; };
 		40E8DD1E28AD707300FC43F4 /* SaingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8DD1D28AD707300FC43F4 /* SaingsModel.swift */; };
 		40E8DD2128AD712700FC43F4 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8DD2028AD712700FC43F4 /* NetworkService.swift */; };
@@ -30,6 +31,7 @@
 		4028D42728AD3DCD00B2279E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4028D42928AD3DCD00B2279E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4028D43528AD3E9800B2279E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		40A07FA528AE796100D81E3A /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		40E8DD1A28AD701A00FC43F4 /* MainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCViewModel.swift; sourceTree = "<group>"; };
 		40E8DD1D28AD707300FC43F4 /* SaingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaingsModel.swift; sourceTree = "<group>"; };
 		40E8DD2028AD712700FC43F4 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				4028D41828AD3DCC00B2279E /* AppDelegate.swift */,
 				4028D41A28AD3DCC00B2279E /* SceneDelegate.swift */,
+				40A07FA528AE796100D81E3A /* ScreenSize.swift */,
 				40E8DD1F28AD70F400FC43F4 /* Models */,
 				40E8DD1C28AD702000FC43F4 /* MainVC */,
 				4028D42428AD3DCD00B2279E /* Assets.xcassets */,
@@ -183,6 +186,7 @@
 				4028D41928AD3DCC00B2279E /* AppDelegate.swift in Sources */,
 				40E8DD2328ADFC9800FC43F4 /* MainCollectionCell.swift in Sources */,
 				40E8DD1B28AD701A00FC43F4 /* MainVCViewModel.swift in Sources */,
+				40A07FA628AE796100D81E3A /* ScreenSize.swift in Sources */,
 				4028D41B28AD3DCC00B2279E /* SceneDelegate.swift in Sources */,
 				40E8DD2128AD712700FC43F4 /* NetworkService.swift in Sources */,
 			);

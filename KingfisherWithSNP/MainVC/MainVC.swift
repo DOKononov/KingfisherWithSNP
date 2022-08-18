@@ -7,28 +7,25 @@
 
 import UIKit
 import SnapKit
-//import Kingfisher
 
 class MainVC: UIViewController {
     
     private var viewModel: MainVCProtocol = MainVCViewModel()
     
-    private lazy var collectionMargin: CGFloat = 40
-    private lazy var collectionInset: CGFloat = 20
+    private  var collectionMargin: CGFloat = 32
+    private  var collectionInset: CGFloat = 16
     private lazy var cellWidth: CGFloat = 0 {
         didSet {
-            cellHeight = cellWidth * 1.3
+            cellHeight = cellWidth * 1.7
         }
     }
     private lazy var cellHeight: CGFloat = 0
     private var currentPage = 0
     
-    
-    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
-        cellWidth = UIScreen.main.bounds.width - collectionMargin * 2
+        cellWidth = ScreenSize.shared.screenWidth - collectionMargin * 2
         
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
@@ -36,7 +33,7 @@ class MainVC: UIViewController {
         layout.footerReferenceSize = CGSize(width: collectionMargin, height: 0)
         layout.minimumLineSpacing = collectionInset
         layout.scrollDirection = .horizontal
-
+        
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.decelerationRate = UIScrollView.DecelerationRate.fast
         collection.backgroundColor = .green
@@ -47,6 +44,14 @@ class MainVC: UIViewController {
         collection.dataSource = self
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
+    }()
+    
+    var firstCircle: UIView = {
+        let circle = UIView()
+        circle.layer.cornerRadius = ScreenSize.shared.screenWidth(1.5) / 2
+        circle.backgroundColor = .yellow
+        
+        return circle
     }()
     
     override func viewDidLoad() {
@@ -63,7 +68,10 @@ class MainVC: UIViewController {
     
     
     private func addSubviews() {
-        self.view.addSubview(collectionView)
+        view.addSubview(firstCircle)
+        view.addSubview(collectionView)
+ 
+        
     }
     
     private func setupLayout() {
@@ -74,6 +82,14 @@ class MainVC: UIViewController {
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
+        
+        firstCircle.snp.makeConstraints { make in
+            make.centerX.equalTo(view.frame.minX)
+            make.centerY.equalTo(view.frame.minY).offset(UIScreen.main.bounds.width * 0.2)
+            make.height.equalTo(ScreenSize.shared.screenWidth(1.5))
+            make.width.equalTo(ScreenSize.shared.screenWidth(1.5))
+        }
+        
     }
     
     private func setupAppearence() {
@@ -100,7 +116,7 @@ extension MainVC: UICollectionViewDelegate,  UICollectionViewDataSource,  UIColl
         return cell ?? UICollectionViewCell()
     }
     
-
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let pageWidth = cellWidth + collectionInset
@@ -125,5 +141,5 @@ extension MainVC: UICollectionViewDelegate,  UICollectionViewDataSource,  UIColl
         let point = CGPoint(x: newPage * pageWidth, y: targetContentOffset.pointee.y)
         targetContentOffset.pointee = point
     }
-
+    
 }
