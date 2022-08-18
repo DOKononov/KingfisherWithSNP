@@ -12,6 +12,6 @@ class MainCollectionCell: UICollectionViewCell {
     static var cellWidth: CGFloat = UIScreen.main.bounds.width - 40.0
     
     func setupCell(with saying: SayingModel) {
-        self.backgroundColor = .black
+        self.backgroundColor = .white
     }
 }

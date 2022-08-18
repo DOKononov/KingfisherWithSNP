@@ -16,8 +16,8 @@ final class ScreenSize {
         UIScreen.main.bounds.width
     }
     
-    func screenWidth(_ multiplayer: CGFloat) -> CGFloat {
-        return UIScreen.main.bounds.width * multiplayer
+    func screenWidth(_ multiplier: CGFloat) -> CGFloat {
+        return UIScreen.main.bounds.width * multiplier
 
     }
 }

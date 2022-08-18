@@ -16,7 +16,7 @@ struct SayingModel: Codable {
     let id: Int
     let text, author: String
     let image: String
-    let lang: Lang
+    var lang: Lang
 }
 
 enum Lang: String, Codable {
