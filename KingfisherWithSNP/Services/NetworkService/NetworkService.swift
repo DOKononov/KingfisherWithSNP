@@ -8,6 +8,7 @@
 import Foundation
 
 final class NetworkService {
+    
     private init() {}
     static var shared = NetworkService()
     

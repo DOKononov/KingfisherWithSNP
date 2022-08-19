@@ -12,11 +12,11 @@ class MainVC: UIViewController {
     
     private var viewModel: MainVCProtocol = MainVCViewModel()
     
-    private  var collectionMargin: CGFloat = 32
-    private  var collectionInset: CGFloat = 16
+    private var collectionMargin: CGFloat = 32
+    private var collectionInset: CGFloat = 16
     private lazy var cellWidth: CGFloat = 0 {
         didSet {
-            cellHeight = cellWidth * 1.7
+            cellHeight = cellWidth * 1.6
         }
     }
     private lazy var cellHeight: CGFloat = 0
@@ -24,7 +24,6 @@ class MainVC: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        
         cellWidth = ScreenSize.shared.screenWidth - collectionMargin * 2
         
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -38,6 +37,7 @@ class MainVC: UIViewController {
         collection.decelerationRate = UIScrollView.DecelerationRate.fast
         collection.backgroundColor = .clear
         collection.showsHorizontalScrollIndicator = false
+        collection.backgroundColor = .clear
         
         collection.register(MainCollectionCell.self, forCellWithReuseIdentifier: "\(MainCollectionCell.self)")
         collection.delegate = self
@@ -46,7 +46,7 @@ class MainVC: UIViewController {
         return collection
     }()
     
-    var welcomLabel: UILabel = {
+    private var welcomLabel: UILabel = {
         let label = UILabel()
         label.text = "Начни свой день с цитаты!"
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
@@ -56,23 +56,21 @@ class MainVC: UIViewController {
         return label
     }()
     
-    var firstCircle: UIView = {
+    private var firstCircle: UIView = {
         let circle = UIView()
         circle.layer.cornerRadius = ScreenSize.shared.screenWidth(1.4) / 2
         circle.backgroundColor = UIColor(red: 176 / 255, green: 128 / 255, blue: 246 / 255, alpha: 1)
-        
         return circle
     }()
     
-    var secondCircle: UIView = {
+    private var secondCircle: UIView = {
         let circle = UIView()
         circle.layer.cornerRadius = ScreenSize.shared.screenWidth(1.1) / 2
         circle.backgroundColor = UIColor(red: 219 / 255, green: 199 / 255, blue: 247 / 255, alpha: 0.9)
-        
         return circle
     }()
     
-    var continueButtom: UIButton = {
+    private var continueButtom: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(red: 248 / 255, green: 134 / 255, blue: 250 / 255, alpha: 1)
         button.setTitle("Продолжить", for: .normal)
@@ -99,27 +97,26 @@ class MainVC: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(welcomLabel)
         view.addSubview(continueButtom)
-        
     }
     
     private func setupLayout() {
         
         welcomLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.equalToSuperview().offset(collectionInset)
+            make.trailing.equalToSuperview().offset(-collectionInset)
         }
         
         continueButtom.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-collectionInset)
+            make.leading.equalToSuperview().offset(collectionInset)
+            make.trailing.equalToSuperview().offset(-collectionInset)
             make.height.equalTo(50)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.bottom.equalTo(continueButtom.snp.top).offset(-16)
-            make.top.equalTo(welcomLabel.snp.bottom).offset(16)
+            make.bottom.equalTo(continueButtom.snp.top).offset(-collectionInset)
+            make.top.equalTo(welcomLabel.snp.bottom).offset(collectionInset)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
@@ -137,9 +134,7 @@ class MainVC: UIViewController {
             make.height.equalTo(ScreenSize.shared.screenWidth(1.1))
             make.width.equalTo(ScreenSize.shared.screenWidth(1.1))
         }
-        
-
-        
+ 
     }
     
     private func setupAppearence() {
@@ -167,7 +162,7 @@ extension MainVC: UICollectionViewDelegate,  UICollectionViewDataSource,  UIColl
         return cell ?? UICollectionViewCell()
     }
     
-    
+
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let pageWidth = cellWidth + collectionInset

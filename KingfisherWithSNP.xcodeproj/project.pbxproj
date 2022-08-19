@@ -54,7 +54,6 @@
 		4028D40C28AD3DCC00B2279E = {
 			isa = PBXGroup;
 			children = (
-				40E8DD2028AD712700FC43F4 /* NetworkService.swift */,
 				4028D41728AD3DCC00B2279E /* KingfisherWithSNP */,
 				4028D41628AD3DCC00B2279E /* Products */,
 			);
@@ -71,23 +70,80 @@
 		4028D41728AD3DCC00B2279E /* KingfisherWithSNP */ = {
 			isa = PBXGroup;
 			children = (
-				4028D41828AD3DCC00B2279E /* AppDelegate.swift */,
-				4028D41A28AD3DCC00B2279E /* SceneDelegate.swift */,
-				40A07FA528AE796100D81E3A /* ScreenSize.swift */,
+				40A07FAC28AF6FFA00D81E3A /* App */,
+				40A07FAB28AF6FF000D81E3A /* Services */,
 				40E8DD1F28AD70F400FC43F4 /* Models */,
 				40E8DD1C28AD702000FC43F4 /* MainVC */,
-				4028D42428AD3DCD00B2279E /* Assets.xcassets */,
-				4028D42628AD3DCD00B2279E /* LaunchScreen.storyboard */,
+				40A07FAA28AF6FDC00D81E3A /* Helpers */,
+				40A07FAD28AF701100D81E3A /* Resources */,
 				4028D42928AD3DCD00B2279E /* Info.plist */,
-				4028D42128AD3DCC00B2279E /* KingfisherWithSNP.xcdatamodeld */,
 			);
 			path = KingfisherWithSNP;
+			sourceTree = "<group>";
+		};
+		40A07FA928AF6FC500D81E3A /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				40E8DD2228ADFC9800FC43F4 /* MainCollectionCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		40A07FAA28AF6FDC00D81E3A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				40A07FA528AE796100D81E3A /* ScreenSize.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		40A07FAB28AF6FF000D81E3A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				40A07FAE28AF702600D81E3A /* CoreDataService */,
+				40A07FAF28AF703200D81E3A /* NetworkService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		40A07FAC28AF6FFA00D81E3A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4028D41828AD3DCC00B2279E /* AppDelegate.swift */,
+				4028D41A28AD3DCC00B2279E /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		40A07FAD28AF701100D81E3A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4028D42428AD3DCD00B2279E /* Assets.xcassets */,
+				4028D42628AD3DCD00B2279E /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		40A07FAE28AF702600D81E3A /* CoreDataService */ = {
+			isa = PBXGroup;
+			children = (
+				4028D42128AD3DCC00B2279E /* KingfisherWithSNP.xcdatamodeld */,
+			);
+			path = CoreDataService;
+			sourceTree = "<group>";
+		};
+		40A07FAF28AF703200D81E3A /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				40E8DD2028AD712700FC43F4 /* NetworkService.swift */,
+			);
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
 		40E8DD1C28AD702000FC43F4 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
-				40E8DD2228ADFC9800FC43F4 /* MainCollectionCell.swift */,
+				40A07FA928AF6FC500D81E3A /* cell */,
 				4028D43528AD3E9800B2279E /* MainVC.swift */,
 				40E8DD1A28AD701A00FC43F4 /* MainVCViewModel.swift */,
 			);

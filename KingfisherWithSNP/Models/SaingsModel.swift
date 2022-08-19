@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct SayingsResponce: Codable {
+final class SayingsResponce: Codable {
     let status: String
     let data: [SayingModel]
 }
 
-struct SayingModel: Codable {
+final class SayingModel: Codable {
     let id: Int
     let text, author: String
     let image: String

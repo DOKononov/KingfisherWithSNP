@@ -29,10 +29,9 @@ final class MainVCViewModel: MainVCProtocol {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let saings):
-                self.saings = saings.filter({ $0.lang == .en})
+                self.saings = saings.filter({ $0.lang == .ru})
             }
         }
     }
-    
     
 }
