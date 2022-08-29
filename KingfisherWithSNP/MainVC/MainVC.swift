@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
 class MainVC: UIViewController {
     //var?
@@ -86,6 +87,15 @@ class MainVC: UIViewController {
         return button
     }()
     
+    private let animationView: AnimationView = {
+       let view = AnimationView(name: "skeletonLoading")
+        view.loopMode = .loop
+        view.play()
+        view.contentMode = .scaleAspectFill
+        view.layer.cornerRadius = 20
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +104,12 @@ class MainVC: UIViewController {
         setupLayout()
         setupAppearence()
         bind()
-        viewModel.loadSaings()
+        viewModel.loadSaings {
+            DispatchQueue.main.async {
+                self.animationView.stop()
+                self.animationView.isHidden = true
+            }
+        }
     }
     
     
@@ -104,6 +119,7 @@ class MainVC: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(welcomLabel)
         view.addSubview(continueButtom)
+        view.addSubview(animationView)
     }
     
     private func setupLayout() {
@@ -141,6 +157,13 @@ class MainVC: UIViewController {
             make.centerY.equalTo(firstCircle.center.y).offset(ScreenSize.shared.screenWidth(0.8))
             make.height.equalTo(ScreenSize.shared.screenWidth(1.1))
             make.width.equalTo(ScreenSize.shared.screenWidth(1.1))
+        }
+        
+        animationView.snp.makeConstraints { make in
+            make.height.equalTo(cellHeight)
+            make.width.equalTo(cellWidth)
+            make.top.equalTo(welcomLabel.snp.bottom).offset(collectionInset)
+            make.centerX.equalToSuperview()
         }
  
     }

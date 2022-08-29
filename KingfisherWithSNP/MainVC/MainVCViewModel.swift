@@ -12,7 +12,7 @@ protocol MainVCProtocol {
     //можно возвращать () -> () вместо () -> Void. Возможно так симпотичнее))
     //знаю, но мне такая запись больше нравиться тк нет месива из скобок
     var contentDidChanged: (() -> Void)? { get set }
-    func loadSaings()
+    func loadSaings(complition: @escaping ()-> Void)
 }
 
 final class MainVCViewModel: MainVCProtocol {
@@ -26,13 +26,14 @@ final class MainVCViewModel: MainVCProtocol {
     //знаю, но мне такая запись больше нравиться тк нет месива из скобок
     var contentDidChanged: (() -> Void)?
     
-    func loadSaings() {
+    func loadSaings(complition: @escaping ()-> Void) {
         NetworkService.shared.loadSaings { result in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let saings):
                 self.saings = saings.filter({ $0.lang == .ru})
+                complition()
             }
         }
     }

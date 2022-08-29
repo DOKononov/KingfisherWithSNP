@@ -15,6 +15,8 @@
 		4028D43628AD3E9800B2279E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028D43528AD3E9800B2279E /* MainVC.swift */; };
 		40482DE428BA27D20010C82B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 40482DE328BA27D20010C82B /* SnapKit */; };
 		40482DE728BA27E10010C82B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 40482DE628BA27E10010C82B /* Kingfisher */; };
+		40482DE928BCC6360010C82B /* skeletonLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = 40482DE828BCC6360010C82B /* skeletonLoading.json */; };
+		40482DEC28BCC78C0010C82B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 40482DEB28BCC78C0010C82B /* Lottie */; };
 		40A07FA628AE796100D81E3A /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A07FA528AE796100D81E3A /* ScreenSize.swift */; };
 		40E8DD1B28AD701A00FC43F4 /* MainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8DD1A28AD701A00FC43F4 /* MainVCViewModel.swift */; };
 		40E8DD1E28AD707300FC43F4 /* SaingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8DD1D28AD707300FC43F4 /* SaingsModel.swift */; };
@@ -31,6 +33,7 @@
 		4028D42728AD3DCD00B2279E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4028D42928AD3DCD00B2279E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4028D43528AD3E9800B2279E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		40482DE828BCC6360010C82B /* skeletonLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = skeletonLoading.json; sourceTree = "<group>"; };
 		40A07FA528AE796100D81E3A /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		40E8DD1A28AD701A00FC43F4 /* MainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCViewModel.swift; sourceTree = "<group>"; };
 		40E8DD1D28AD707300FC43F4 /* SaingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaingsModel.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 			files = (
 				40482DE728BA27E10010C82B /* Kingfisher in Frameworks */,
 				40482DE428BA27D20010C82B /* SnapKit in Frameworks */,
+				40482DEC28BCC78C0010C82B /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				4028D42428AD3DCD00B2279E /* Assets.xcassets */,
+				40482DE828BCC6360010C82B /* skeletonLoading.json */,
 				4028D42628AD3DCD00B2279E /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -177,6 +182,7 @@
 			packageProductDependencies = (
 				40482DE328BA27D20010C82B /* SnapKit */,
 				40482DE628BA27E10010C82B /* Kingfisher */,
+				40482DEB28BCC78C0010C82B /* Lottie */,
 			);
 			productName = KingfisherWithSNP;
 			productReference = 4028D41528AD3DCC00B2279E /* KingfisherWithSNP.app */;
@@ -209,6 +215,7 @@
 			packageReferences = (
 				40482DE228BA27D20010C82B /* XCRemoteSwiftPackageReference "SnapKit" */,
 				40482DE528BA27E10010C82B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				40482DEA28BCC78C0010C82B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 4028D41628AD3DCC00B2279E /* Products */;
 			projectDirPath = "";
@@ -224,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40482DE928BCC6360010C82B /* skeletonLoading.json in Resources */,
 				4028D42828AD3DCD00B2279E /* LaunchScreen.storyboard in Resources */,
 				4028D42528AD3DCD00B2279E /* Assets.xcassets in Resources */,
 			);
@@ -474,6 +482,14 @@
 				kind = branch;
 			};
 		};
+		40482DEA28BCC78C0010C82B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -486,6 +502,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 40482DE528BA27E10010C82B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		40482DEB28BCC78C0010C82B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 40482DEA28BCC78C0010C82B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 
