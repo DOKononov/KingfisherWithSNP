@@ -12,9 +12,9 @@
 		4028D42328AD3DCC00B2279E /* KingfisherWithSNP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4028D42128AD3DCC00B2279E /* KingfisherWithSNP.xcdatamodeld */; };
 		4028D42528AD3DCD00B2279E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4028D42428AD3DCD00B2279E /* Assets.xcassets */; };
 		4028D42828AD3DCD00B2279E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4028D42628AD3DCD00B2279E /* LaunchScreen.storyboard */; };
-		4028D43128AD3E1200B2279E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4028D43028AD3E1200B2279E /* SnapKit */; };
-		4028D43428AD3E4200B2279E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4028D43328AD3E4200B2279E /* Kingfisher */; };
 		4028D43628AD3E9800B2279E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028D43528AD3E9800B2279E /* MainVC.swift */; };
+		40482DE428BA27D20010C82B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 40482DE328BA27D20010C82B /* SnapKit */; };
+		40482DE728BA27E10010C82B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 40482DE628BA27E10010C82B /* Kingfisher */; };
 		40A07FA628AE796100D81E3A /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A07FA528AE796100D81E3A /* ScreenSize.swift */; };
 		40E8DD1B28AD701A00FC43F4 /* MainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8DD1A28AD701A00FC43F4 /* MainVCViewModel.swift */; };
 		40E8DD1E28AD707300FC43F4 /* SaingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8DD1D28AD707300FC43F4 /* SaingsModel.swift */; };
@@ -43,8 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4028D43428AD3E4200B2279E /* Kingfisher in Frameworks */,
-				4028D43128AD3E1200B2279E /* SnapKit in Frameworks */,
+				40482DE728BA27E10010C82B /* Kingfisher in Frameworks */,
+				40482DE428BA27D20010C82B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,12 +81,12 @@
 			path = KingfisherWithSNP;
 			sourceTree = "<group>";
 		};
-		40A07FA928AF6FC500D81E3A /* cell */ = {
+		40A07FA928AF6FC500D81E3A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				40E8DD2228ADFC9800FC43F4 /* MainCollectionCell.swift */,
 			);
-			path = cell;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		40A07FAA28AF6FDC00D81E3A /* Helpers */ = {
@@ -143,7 +143,7 @@
 		40E8DD1C28AD702000FC43F4 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
-				40A07FA928AF6FC500D81E3A /* cell */,
+				40A07FA928AF6FC500D81E3A /* Cell */,
 				4028D43528AD3E9800B2279E /* MainVC.swift */,
 				40E8DD1A28AD701A00FC43F4 /* MainVCViewModel.swift */,
 			);
@@ -175,8 +175,8 @@
 			);
 			name = KingfisherWithSNP;
 			packageProductDependencies = (
-				4028D43028AD3E1200B2279E /* SnapKit */,
-				4028D43328AD3E4200B2279E /* Kingfisher */,
+				40482DE328BA27D20010C82B /* SnapKit */,
+				40482DE628BA27E10010C82B /* Kingfisher */,
 			);
 			productName = KingfisherWithSNP;
 			productReference = 4028D41528AD3DCC00B2279E /* KingfisherWithSNP.app */;
@@ -207,8 +207,8 @@
 			);
 			mainGroup = 4028D40C28AD3DCC00B2279E;
 			packageReferences = (
-				4028D42F28AD3E1200B2279E /* XCRemoteSwiftPackageReference "SnapKit" */,
-				4028D43228AD3E4100B2279E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				40482DE228BA27D20010C82B /* XCRemoteSwiftPackageReference "SnapKit" */,
+				40482DE528BA27E10010C82B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 4028D41628AD3DCC00B2279E /* Products */;
 			projectDirPath = "";
@@ -383,13 +383,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CK7G8B5AC6;
+				DEVELOPMENT_TEAM = 28423D34T2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KingfisherWithSNP/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,7 +401,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -410,13 +412,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CK7G8B5AC6;
+				DEVELOPMENT_TEAM = 28423D34T2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KingfisherWithSNP/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,7 +430,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -454,15 +458,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4028D42F28AD3E1200B2279E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		40482DE228BA27D20010C82B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				branch = develop;
+				kind = branch;
 			};
 		};
-		4028D43228AD3E4100B2279E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		40482DE528BA27E10010C82B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -473,14 +477,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4028D43028AD3E1200B2279E /* SnapKit */ = {
+		40482DE328BA27D20010C82B /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4028D42F28AD3E1200B2279E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 40482DE228BA27D20010C82B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		4028D43328AD3E4200B2279E /* Kingfisher */ = {
+		40482DE628BA27E10010C82B /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4028D43228AD3E4100B2279E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 40482DE528BA27E10010C82B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

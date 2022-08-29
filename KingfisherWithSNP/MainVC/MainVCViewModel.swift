@@ -9,6 +9,8 @@ import Foundation
 
 protocol MainVCProtocol {
     var saings: [SayingModel] { get set }
+    //можно возвращать () -> () вместо () -> Void. Возможно так симпотичнее))
+    //знаю, но мне такая запись больше нравиться тк нет месива из скобок
     var contentDidChanged: (() -> Void)? { get set }
     func loadSaings()
 }
@@ -20,7 +22,8 @@ final class MainVCViewModel: MainVCProtocol {
             contentDidChanged?()
         }
     }
-    
+    //можно возвращать () -> () вместо () -> Void. Возможно так симпотичнее))
+    //знаю, но мне такая запись больше нравиться тк нет месива из скобок
     var contentDidChanged: (() -> Void)?
     
     func loadSaings() {

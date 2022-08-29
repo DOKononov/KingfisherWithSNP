@@ -10,8 +10,10 @@ import Foundation
 final class NetworkService {
     
     private init() {}
+    //почему var?
     static var shared = NetworkService()
     
+    //тоже самое
     private var URLStr = "https://stage.steemool.com/api/v1/sayings"
     
     func loadSaings(complition: @escaping (Result<[SayingModel], Error>) -> Void) {

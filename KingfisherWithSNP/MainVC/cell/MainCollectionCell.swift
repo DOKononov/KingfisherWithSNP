@@ -10,7 +10,7 @@ import Kingfisher
 
 final class MainCollectionCell: UICollectionViewCell {
         
-    private var imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         view.layer.cornerRadius = 20
@@ -18,19 +18,25 @@ final class MainCollectionCell: UICollectionViewCell {
         return view
     }()
     
-    private var sayingLabel: UILabel = {
+    private let sayingLabel: UILabel = {
        let label = UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private var authorLabel: UILabel = {
+    private let authorLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
         label.textAlignment = .right
         label.font = UIFont.systemFont(ofSize: 16, weight: .thin)
         label.textColor = .darkGray
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -39,6 +45,7 @@ final class MainCollectionCell: UICollectionViewCell {
         addSubviews()
         setupLayout()
         loadImage(saying: saying)
+        layer.cornerRadius = 20
         sayingLabel.text = saying.text
         saying.author != "" ? (authorLabel.text = saying.author) : (authorLabel.text = "no name")
     }
@@ -55,18 +62,21 @@ final class MainCollectionCell: UICollectionViewCell {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(imageView.snp.width)
         }
+        
+        authorLabel.snp.makeConstraints { make in
+            make.bottom.trailing.equalToSuperview().offset(-16)
+            make.leading.equalToSuperview().offset(16)
+            make.height.equalTo(authorLabel.font.lineHeight)
+            make.top.greaterThanOrEqualTo(sayingLabel.snp.bottom).offset(16)
+        }
+        
         sayingLabel.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(16)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
         
-        authorLabel.snp.makeConstraints { make in
-            make.bottom.trailing.equalToSuperview().offset(-16)
-            make.leading.equalToSuperview().offset(16)
-            make.top.greaterThanOrEqualTo(sayingLabel.snp.bottom).offset(16)
-        }
-        
+        sayingLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
     
     private func loadImage(saying: SayingModel) {

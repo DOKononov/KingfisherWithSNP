@@ -9,22 +9,24 @@ import UIKit
 import SnapKit
 
 class MainVC: UIViewController {
-    
+    //var?
+    // в bind() переопределяем contentDidChanged()
     private var viewModel: MainVCProtocol = MainVCViewModel()
-    
-    private var collectionMargin: CGFloat = 32
-    private var collectionInset: CGFloat = 16
-    private lazy var cellWidth: CGFloat = 0 {
-        didSet {
-            cellHeight = cellWidth * 1.6
-        }
-    }
-    private lazy var cellHeight: CGFloat = 0
+    //var?
+    //исправил
+    private let collectionMargin: CGFloat = 32
+    private let collectionInset: CGFloat = 16
+    //
+    private let cellWidth: CGFloat = UIScreen.main.bounds.width - 64
+    //почему lazy?
+    // исправил
+    private let cellHeight: CGFloat = UIScreen.main.bounds.height * 0.6
     private var currentPage = 0
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        cellWidth = ScreenSize.shared.screenWidth - collectionMargin * 2
+        //я бы засетал это сразу в свойстве
+//        cellWidth = ScreenSize.shared.screenWidth - collectionMargin * 2
         
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
@@ -46,31 +48,36 @@ class MainVC: UIViewController {
         return collection
     }()
     
-    private var welcomLabel: UILabel = {
+    //зачем var, если это не lazy
+    private let welcomLabel: UILabel = {
         let label = UILabel()
         label.text = "Начни свой день с цитаты!"
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         label.numberOfLines = 2
         label.textColor = .white
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private var firstCircle: UIView = {
+    //с этим прикольно что запарился, но в целом обычно это будет бэковая картинка)
+    private let firstCircle: UIView = {
         let circle = UIView()
         circle.layer.cornerRadius = ScreenSize.shared.screenWidth(1.4) / 2
         circle.backgroundColor = UIColor(red: 176 / 255, green: 128 / 255, blue: 246 / 255, alpha: 1)
         return circle
     }()
     
-    private var secondCircle: UIView = {
+    private let secondCircle: UIView = {
         let circle = UIView()
         circle.layer.cornerRadius = ScreenSize.shared.screenWidth(1.1) / 2
         circle.backgroundColor = UIColor(red: 219 / 255, green: 199 / 255, blue: 247 / 255, alpha: 0.9)
         return circle
     }()
     
-    private var continueButtom: UIButton = {
+    private let continueButtom: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(red: 248 / 255, green: 134 / 255, blue: 250 / 255, alpha: 1)
         button.setTitle("Продолжить", for: .normal)
@@ -102,7 +109,7 @@ class MainVC: UIViewController {
     private func setupLayout() {
         
         welcomLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(0)
             make.leading.equalToSuperview().offset(collectionInset)
             make.trailing.equalToSuperview().offset(-collectionInset)
         }
@@ -117,6 +124,7 @@ class MainVC: UIViewController {
         collectionView.snp.makeConstraints { make in
             make.bottom.equalTo(continueButtom.snp.top).offset(-collectionInset)
             make.top.equalTo(welcomLabel.snp.bottom).offset(collectionInset)
+            make.height.equalTo(cellHeight)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
@@ -142,8 +150,12 @@ class MainVC: UIViewController {
     }
     
     private func bind() {
-        viewModel.contentDidChanged = {
-            self.collectionView.reloadData()
+        //здесь потенциальный retain cycle (но почему то не могу отследить, хотя все факты на лицо). Сможешь объяснить почему он здесь есть или его нет?))
+        //сегда так работал с MVVM. Никогда не сталкивался с проблемами при этом. Предположу что есть риск возникновения дедлока и необходимо добавить [weak self]?
+        viewModel.contentDidChanged = { [weak self] in
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
         }
     }
     
@@ -158,7 +170,9 @@ extension MainVC: UICollectionViewDelegate,  UICollectionViewDataSource,  UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionCell.self)", for: indexPath) as? MainCollectionCell
         cell?.setupCell(with: viewModel.saings[indexPath.row])
-        cell?.layer.cornerRadius = 20
+        //это лучше засетапить в самой ячейке, но не обязательно. Зависит от кейса. Просто возьми за правило стараться максимально освобождать контроллер.
+        //согласен. убрал в setupCell()
+//        cell?.layer.cornerRadius = 20
         return cell ?? UICollectionViewCell()
     }
     
@@ -166,26 +180,22 @@ extension MainVC: UICollectionViewDelegate,  UICollectionViewDataSource,  UIColl
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let pageWidth = cellWidth + collectionInset
-        let targetXContentOffset = targetContentOffset.pointee.x
-        let contentWidth = collectionView.contentSize.width
-        var newPage = CGFloat(currentPage)
-        
-        if velocity.x == 0 {
-            newPage = ( targetXContentOffset - pageWidth / 2.0 ) / pageWidth + 1.0
-        } else {
-            newPage = CGFloat(velocity.x > 0 ? currentPage + 1 : currentPage - 1)
-            
+        var newPage = currentPage
+
+        if velocity.x != 0 {
+            newPage = velocity.x > 0 ? currentPage + 1 : currentPage - 1
             if newPage < 0 {
+                newPage = viewModel.saings.count - 1
+            }
+            if newPage > viewModel.saings.count - 1 {
                 newPage = 0
             }
-            
-            if (newPage > contentWidth / pageWidth) {
-                newPage = ceil(contentWidth / pageWidth - 1)
-            }
         }
-        currentPage = Int(newPage)
-        let point = CGPoint(x: newPage * pageWidth, y: targetContentOffset.pointee.y)
+
+        currentPage = newPage
+        let point = CGPoint (x: CGFloat(newPage) * pageWidth, y: 0)
         targetContentOffset.pointee = point
+        
     }
     
 }
