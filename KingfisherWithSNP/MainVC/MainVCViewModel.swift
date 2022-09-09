@@ -24,12 +24,12 @@ final class MainVCViewModel: MainVCProtocol {
     var contentDidChanged: (() -> Void)?
     
     func loadSaings(complition: @escaping ()-> Void) {
-        NetworkService.shared.loadSaings { result in
+        NetworkService.shared.loadSaings { [weak self] result in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let saings):
-                self.saings = saings.filter({ $0.lang == .ru})
+                self?.saings = saings.filter({ $0.lang == .ru})
                 complition()
             }
         }
