@@ -10,11 +10,9 @@ import Foundation
 final class NetworkService {
     
     private init() {}
-    //почему var?
-    static var shared = NetworkService()
+    static let shared = NetworkService()
     
-    //тоже самое
-    private var URLStr = "https://stage.steemool.com/api/v1/sayings"
+    private let URLStr = "https://stage.steemool.com/api/v1/sayings"
     
     func loadSaings(complition: @escaping (Result<[SayingModel], Error>) -> Void) {
         guard let url = URL(string: URLStr) else {return}

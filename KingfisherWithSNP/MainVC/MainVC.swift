@@ -10,24 +10,17 @@ import SnapKit
 import Lottie
 
 class MainVC: UIViewController {
-    //var?
-    // в bind() переопределяем contentDidChanged()
     private var viewModel: MainVCProtocol = MainVCViewModel()
-    //var?
-    //исправил
     private let collectionMargin: CGFloat = 32
     private let collectionInset: CGFloat = 16
-    //
+    
     private let cellWidth: CGFloat = UIScreen.main.bounds.width - 64
-    //почему lazy?
-    // исправил
+
     private let cellHeight: CGFloat = UIScreen.main.bounds.height * 0.6
     private var currentPage = 0
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        //я бы засетал это сразу в свойстве
-//        cellWidth = ScreenSize.shared.screenWidth - collectionMargin * 2
         
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
@@ -49,7 +42,6 @@ class MainVC: UIViewController {
         return collection
     }()
     
-    //зачем var, если это не lazy
     private let welcomLabel: UILabel = {
         let label = UILabel()
         label.text = "Начни свой день с цитаты!"
@@ -63,7 +55,6 @@ class MainVC: UIViewController {
         return label
     }()
     
-    //с этим прикольно что запарился, но в целом обычно это будет бэковая картинка)
     private let firstCircle: UIView = {
         let circle = UIView()
         circle.layer.cornerRadius = ScreenSize.shared.screenWidth(1.4) / 2
@@ -173,8 +164,6 @@ class MainVC: UIViewController {
     }
     
     private func bind() {
-        //здесь потенциальный retain cycle (но почему то не могу отследить, хотя все факты на лицо). Сможешь объяснить почему он здесь есть или его нет?))
-        //сегда так работал с MVVM. Никогда не сталкивался с проблемами при этом. Предположу что есть риск возникновения дедлока и необходимо добавить [weak self]?
         viewModel.contentDidChanged = { [weak self] in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
@@ -193,9 +182,6 @@ extension MainVC: UICollectionViewDelegate,  UICollectionViewDataSource,  UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionCell.self)", for: indexPath) as? MainCollectionCell
         cell?.setupCell(with: viewModel.saings[indexPath.row])
-        //это лучше засетапить в самой ячейке, но не обязательно. Зависит от кейса. Просто возьми за правило стараться максимально освобождать контроллер.
-        //согласен. убрал в setupCell()
-//        cell?.layer.cornerRadius = 20
         return cell ?? UICollectionViewCell()
     }
     
